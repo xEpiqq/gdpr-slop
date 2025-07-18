@@ -10,7 +10,6 @@ export default function ContactUs() {
     email: '',
     phone: '',
     company: '',
-    companyWebsite: '',
     jobTitle: '',
     message: '',
     // Opt-in preferences
@@ -58,12 +57,6 @@ export default function ContactUs() {
 
     if (!formData.company.trim()) {
       newErrors.company = 'Company name is required';
-    }
-
-    if (!formData.companyWebsite.trim()) {
-      newErrors.companyWebsite = 'Company website is required';
-    } else if (!/^https?:\/\/.+\..+/.test(formData.companyWebsite)) {
-      newErrors.companyWebsite = 'Please enter a valid website URL (e.g., https://www.company.com)';
     }
 
     if (!formData.message.trim()) {
@@ -126,7 +119,7 @@ export default function ContactUs() {
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h2>
             <p className="text-xl text-gray-600 mb-6">
-              Your message and communication preferences have been received. We'll process your request within 24 hours.
+              Your request for free credits has been received! Our sales team will contact you within 24 hours to get you started.
             </p>
             {(formData.marketingOptOut || formData.productUpdatesOptOut || formData.phoneContactOptOut || formData.smsOptOut || formData.allCommunicationsOptOut) && (
               <div className="bg-blue-50 p-4 rounded-lg mb-6">
@@ -137,7 +130,7 @@ export default function ContactUs() {
               </div>
             )}
             <p className="text-gray-500 mb-8">
-              A confirmation email has been sent to {formData.email}
+              A confirmation email with your free credits information has been sent to {formData.email}
             </p>
             <Link 
               href="/" 
@@ -157,10 +150,10 @@ export default function ContactUs() {
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Get in Touch
+            Get Your Free Credits
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ready to transform your customer communication? Contact our team for a personalized demo and consultation.
+            Ready to transform your customer communication? Get started with free credits and connect with our sales team for a personalized consultation.
           </p>
         </div>
       </section>
@@ -169,28 +162,6 @@ export default function ContactUs() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Toll-Free Verification Notice */}
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
-            <div className="flex">
-              <svg className="w-6 h-6 text-blue-400 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-blue-800 mb-2">Toll-Free Number Verification Requirements</h3>
-                <p className="text-blue-700 mb-3">
-                  To comply with A2P messaging regulations and enable toll-free support, please ensure all information 
-                  provided is accurate and matches your legal business entity. This helps us expedite the verification process.
-                </p>
-                <ul className="text-sm text-blue-600 space-y-1">
-                  <li>• Use your legal business name and DBA if applicable</li>
-                  <li>• Provide your actual company website (not landing pages)</li>
-                  <li>• Use real contact information and business address</li>
-                  <li>• SMS consent is required for toll-free verification</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               
@@ -280,7 +251,7 @@ export default function ContactUs() {
                       <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
                     )}
                     <p className="text-gray-500 text-xs mt-1">
-                      We'll verify this number for toll-free access to our services and SMS/text communications
+                      Our sales team will use this number to contact you about your free credits and consultation
                     </p>
                   </div>
                 </div>
@@ -311,31 +282,6 @@ export default function ContactUs() {
                     )}
                   </div>
 
-                  <div>
-                    <label htmlFor="companyWebsite" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company Website <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="url"
-                      id="companyWebsite"
-                      name="companyWebsite"
-                      value={formData.companyWebsite}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.companyWebsite ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="https://www.yourcompany.com"
-                    />
-                    {errors.companyWebsite && (
-                      <p className="text-red-500 text-sm mt-1">{errors.companyWebsite}</p>
-                    )}
-                    <p className="text-gray-500 text-xs mt-1">
-                      Required for toll-free verification - use your main company website, not landing pages
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                   <div>
                     <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700 mb-2">
                       Job Title
@@ -384,7 +330,7 @@ export default function ContactUs() {
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     errors.message ? 'border-red-500' : 'border-gray-300'
                   }`}
-                  placeholder="Tell us about your customer communication challenges and goals..."
+                  placeholder="Tell us about your business and how you'd like to use your free credits..."
                 />
                 {errors.message && (
                   <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -460,10 +406,10 @@ export default function ContactUs() {
                         className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                       />
                       <label htmlFor="smsOptIn" className="ml-3 text-sm text-gray-700">
-                        <strong>SMS/Text Messages (Required for Toll-Free Verification):</strong> By submitting this form, 
-                        I agree to receive SMS/text messages from Contacted AI at the phone number provided. 
-                        Message and data rates may apply. Text STOP to opt out at any time. 
-                        <span className="text-blue-600">This consent is required for A2P compliance and toll-free number verification.</span>
+                        <strong>SMS/Text Messages:</strong> By submitting this form, 
+                        I agree to receive SMS/text messages from Contacted AI at the phone number provided 
+                        regarding my free credits, consultation scheduling, and sales communications. 
+                        Message and data rates may apply. Text STOP to opt out at any time.
                       </label>
                     </div>
                   </div>
@@ -569,24 +515,26 @@ export default function ContactUs() {
                   </p>
                 </div>
 
-                <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg mt-4">
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg mt-4">
                   <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <svg className="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.745 3.745 0 013.296-1.043A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                     </svg>
-                    Toll-Free Number & A2P Compliance
+                    How Our Sales Team Will Contact You
                   </h4>
                   <p className="text-sm text-gray-700 mb-2">
-                    <strong>Phone Verification Process:</strong> Your phone number will be verified for toll-free access 
-                    and compliance with A2P (Application-to-Person) messaging regulations. This process typically takes 24-48 hours.
+                    <strong>Response Time:</strong> Our sales team will contact you within 24 hours via phone or SMS 
+                    to discuss your free credits and schedule your consultation.
                   </p>
                   <p className="text-sm text-gray-700 mb-2">
-                    <strong>Example Message Format:</strong> "Hi [First Name], this is [Agent Name] with Contacted AI. 
-                    Thank you for your interest in our AI-powered customer communication solutions..."
+                    <strong>Example Contact:</strong> "Hi {formData.firstName || '[Your Name]'}, this is [Sales Rep] with Contacted AI. 
+                    Thank you for your interest! I have your free credits ready and would love to show you how our AI 
+                    can transform your customer communication..."
                   </p>
                   <p className="text-sm text-gray-600">
-                    By providing your phone number and SMS consent, you enable us to offer toll-free support 
-                    and comply with telecommunications regulations for business messaging.
+                    Your contact information helps us provide personalized service and ensure you get the most 
+                    value from your free credits and consultation.
                   </p>
                 </div>
               </div>
@@ -628,7 +576,7 @@ export default function ContactUs() {
                   disabled={isSubmitting}
                   className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Processing Request...' : 'Send Message & Update Preferences'}
+                  {isSubmitting ? 'Processing Request...' : 'Get My Free Credits'}
                 </button>
               </div>
 
