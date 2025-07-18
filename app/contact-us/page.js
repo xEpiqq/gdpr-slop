@@ -12,20 +12,10 @@ export default function ContactUs() {
     company: '',
     jobTitle: '',
     message: '',
-    // Opt-in preferences
-    marketingOptIn: false,
-    productUpdatesOptIn: false,
-    phoneContactOptIn: false,
-    smsOptIn: false,
-    // Opt-out preferences for existing customers
-    marketingOptOut: false,
-    productUpdatesOptOut: false,
-    phoneContactOptOut: false,
-    allCommunicationsOptOut: false,
-    smsOptOut: false,
     agreeToTerms: false,
-    // Customer status
-    existingCustomer: false
+    // Additional message consents
+    transactionalMessages: false,
+    marketingMessages: false
   });
 
   const [errors, setErrors] = useState({});
@@ -121,14 +111,7 @@ export default function ContactUs() {
             <p className="text-xl text-gray-600 mb-6">
               Your request for free credits has been received! Our sales team will contact you within 24 hours to get you started.
             </p>
-            {(formData.marketingOptOut || formData.productUpdatesOptOut || formData.phoneContactOptOut || formData.smsOptOut || formData.allCommunicationsOptOut) && (
-              <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                <p className="text-blue-800 text-sm">
-                  <strong>Opt-out requests processed:</strong> Your communication preferences have been updated. 
-                  You will receive a confirmation email at {formData.email} within 48 hours.
-                </p>
-              </div>
-            )}
+
             <p className="text-gray-500 mb-8">
               A confirmation email with your free credits information has been sent to {formData.email}
             </p>
@@ -298,22 +281,7 @@ export default function ContactUs() {
                   </div>
                 </div>
 
-                {/* Customer Status */}
-                <div className="mt-6">
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="existingCustomer"
-                      name="existingCustomer"
-                      checked={formData.existingCustomer}
-                      onChange={handleInputChange}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="existingCustomer" className="ml-2 text-sm text-gray-700">
-                      I am an existing customer or subscriber
-                    </label>
-                  </div>
-                </div>
+
               </div>
 
               {/* Message */}
@@ -337,205 +305,39 @@ export default function ContactUs() {
                 )}
               </div>
 
-              {/* GDPR Consent Options */}
+
+              {/* Additional Message Consent Checkboxes */}
               <div className="mb-8 p-6 bg-gray-50 rounded-lg">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Communication Preferences (GDPR Compliant)</h2>
-                <p className="text-gray-600 mb-6">
-                  In compliance with GDPR, please specify how you'd like us to communicate with you. 
-                  You can update these preferences at any time.
-                </p>
-
-                {/* Opt-In Section for New Customers */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">✅ Opt-In Preferences (New Communications)</h3>
-                  <p className="text-sm text-gray-600 mb-4">Select the communications you would like to receive:</p>
-                  
-                  <div className="space-y-4 pl-4">
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="marketingOptIn"
-                        name="marketingOptIn"
-                        checked={formData.marketingOptIn}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="marketingOptIn" className="ml-3 text-sm text-gray-700">
-                        <strong>Marketing Communications:</strong> I consent to receive marketing emails about 
-                        Contacted AI products, services, and industry insights. You can unsubscribe at any time.
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="productUpdatesOptIn"
-                        name="productUpdatesOptIn"
-                        checked={formData.productUpdatesOptIn}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="productUpdatesOptIn" className="ml-3 text-sm text-gray-700">
-                        <strong>Product Updates:</strong> I would like to receive notifications about 
-                        new features, updates, and important service announcements.
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="phoneContactOptIn"
-                        name="phoneContactOptIn"
-                        checked={formData.phoneContactOptIn}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="phoneContactOptIn" className="ml-3 text-sm text-gray-700">
-                        <strong>Phone Contact:</strong> I consent to be contacted by phone for sales consultations, 
-                        support, and account-related matters using the toll-free number provided.
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="smsOptIn"
-                        name="smsOptIn"
-                        checked={formData.smsOptIn}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="smsOptIn" className="ml-3 text-sm text-gray-700">
-                        <strong>SMS/Text Messages:</strong> By submitting this form, 
-                        I agree to receive SMS/text messages from Contacted AI at the phone number provided 
-                        regarding my free credits, consultation scheduling, and sales communications. 
-                        Message and data rates may apply. Text STOP to opt out at any time.
-                      </label>
-                    </div>
+                <h2 className="text-xl font-bold text-gray-900 mb-6">Message Consent</h2>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      id="transactionalMessages"
+                      name="transactionalMessages"
+                      checked={formData.transactionalMessages}
+                      onChange={handleInputChange}
+                      className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="transactionalMessages" className="ml-3 text-sm text-gray-700">
+                      By checking this box, I consent to receive transactional messages related to my account, orders, or services I have requested. These messages may include appointment reminders, order confirmations, and account notifications among others. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out.
+                    </label>
                   </div>
-                </div>
 
-                {/* Opt-Out Section for Existing Customers */}
-                <div className="mb-8 border-t border-gray-300 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">🚫 Opt-Out Preferences (Stop Existing Communications)</h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    If you're already receiving communications from us and want to stop specific types:
-                  </p>
-                  
-                  <div className="space-y-4 pl-4">
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="allCommunicationsOptOut"
-                        name="allCommunicationsOptOut"
-                        checked={formData.allCommunicationsOptOut}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="allCommunicationsOptOut" className="ml-3 text-sm text-gray-700">
-                        <strong>Unsubscribe from ALL communications:</strong> Stop all marketing emails, 
-                        product updates, and promotional phone calls. (Service-related communications may still be sent)
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="marketingOptOut"
-                        name="marketingOptOut"
-                        checked={formData.marketingOptOut}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="marketingOptOut" className="ml-3 text-sm text-gray-700">
-                        <strong>Stop Marketing Emails:</strong> Unsubscribe from marketing communications, 
-                        promotions, and industry insights.
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="productUpdatesOptOut"
-                        name="productUpdatesOptOut"
-                        checked={formData.productUpdatesOptOut}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="productUpdatesOptOut" className="ml-3 text-sm text-gray-700">
-                        <strong>Stop Product Updates:</strong> Unsubscribe from product update notifications 
-                        and feature announcements.
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="phoneContactOptOut"
-                        name="phoneContactOptOut"
-                        checked={formData.phoneContactOptOut}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="phoneContactOptOut" className="ml-3 text-sm text-gray-700">
-                        <strong>Stop Marketing Calls:</strong> Remove my number from marketing and 
-                        sales call lists. (Support calls may still be made for service issues)
-                      </label>
-                    </div>
-
-                    <div className="flex items-start">
-                      <input
-                        type="checkbox"
-                        id="smsOptOut"
-                        name="smsOptOut"
-                        checked={formData.smsOptOut}
-                        onChange={handleInputChange}
-                        className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="smsOptOut" className="ml-3 text-sm text-gray-700">
-                        <strong>Stop SMS/Text Messages:</strong> Unsubscribe from all SMS/text messages 
-                        including promotional offers and updates. (Critical service notifications may still be sent)
-                      </label>
-                    </div>
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      id="marketingMessages"
+                      name="marketingMessages"
+                      checked={formData.marketingMessages}
+                      onChange={handleInputChange}
+                      className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="marketingMessages" className="ml-3 text-sm text-gray-700">
+                      By checking this box, I consent to receive marketing and promotional messages, including special offers, discounts, new product updates among others. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out.
+                    </label>
                   </div>
-                </div>
-
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Your Data Rights (GDPR)</h4>
-                  <p className="text-sm text-gray-600">
-                    You have the right to access, rectify, port, or delete your personal data at any time. 
-                    To exercise these rights or manage your communication preferences, contact us at{' '}
-                    <Link href="mailto:privacy@contactedai.com" className="text-blue-600 hover:underline">
-                      privacy@contactedai.com
-                    </Link>{' '}
-                    or use our{' '}
-                    <Link href="/privacy-preferences" className="text-blue-600 hover:underline">
-                      privacy preference center
-                    </Link>.
-                  </p>
-                </div>
-
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg mt-4">
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.745 3.745 0 013.296-1.043A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                    </svg>
-                    How Our Sales Team Will Contact You
-                  </h4>
-                  <p className="text-sm text-gray-700 mb-2">
-                    <strong>Response Time:</strong> Our sales team will contact you within 24 hours via phone or SMS 
-                    to discuss your free credits and schedule your consultation.
-                  </p>
-                  <p className="text-sm text-gray-700 mb-2">
-                    <strong>Example Contact:</strong> "Hi {formData.firstName || '[Your Name]'}, this is [Sales Rep] with Contacted AI. 
-                    Thank you for your interest! I have your free credits ready and would love to show you how our AI 
-                    can transform your customer communication..."
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Your contact information helps us provide personalized service and ensure you get the most 
-                    value from your free credits and consultation.
-                  </p>
                 </div>
               </div>
 
@@ -555,7 +357,7 @@ export default function ContactUs() {
                   <label htmlFor="agreeToTerms" className="ml-3 text-sm text-gray-700">
                     <span className="text-red-500">*</span> I agree to the{' '}
                     <Link href="/terms-of-service" className="text-blue-600 hover:underline">
-                      Terms of Service
+                      Terms and Conditions
                     </Link>{' '}
                     and{' '}
                     <Link href="/privacy-policy" className="text-blue-600 hover:underline">

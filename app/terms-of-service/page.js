@@ -2,7 +2,7 @@ export default function TermsOfService() {
   return (
     <div className="bg-white min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms and Conditions</h1>
         
         <div className="bg-blue-50 p-6 rounded-lg mb-8">
           <p className="text-gray-700">
@@ -15,7 +15,7 @@ export default function TermsOfService() {
           <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">1. Acceptance of Terms</h2>
           <p className="text-gray-600 mb-6">
             By accessing or using the Contacted AI service provided by Scavenger AI LLC ("Company," "we," "us," or "our"), 
-            you ("User," "you," or "your") agree to be bound by these Terms of Service ("Terms"). If you do not agree to 
+            you ("User," "you," or "your") agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to 
             these Terms, please do not use our service.
           </p>
 

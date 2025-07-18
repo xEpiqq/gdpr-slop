@@ -49,7 +49,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/terms-of-service" className="text-gray-300 hover:text-white transition-colors">
-                  Terms of Service
+                  Terms and Conditions
                 </Link>
               </li>
               <li>
